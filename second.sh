@@ -48,12 +48,12 @@ echo "server {
         include proxy_params;
         proxy_pass http://unix:/run/gunicorn.sock;
     }
-}" > /etc/nginx/sites-available/first
+}" > /etc/nginx/sites-available/textutils
 
 
-sudo ln -s /etc/nginx/sites-available/first  /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/textutils  /etc/nginx/sites-enabled/
 
-sudo rm /etc/nginx//sites-enabled/default
+sudo rm /etc/nginx/sites-enabled/default
 
 
 sudo systemctl restart nginx
