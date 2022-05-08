@@ -2,7 +2,7 @@
 
 deactivate
 
-
+echo "[Unit]
 Description=gunicorn socket
 
 [Socket]
@@ -28,8 +28,7 @@ ExecStart=/home/ubuntu/env/bin/gunicorn \
           first.wsgi:application
 
 [Install]
-WantedBy=multi-user.target" 
->  /etc/systemd/system/gunicorn.service
+WantedBy=multi-user.target"  >  /etc/systemd/system/gunicorn.service
 
 sudo systemctl start gunicorn.socket
 
@@ -49,11 +48,10 @@ echo "server {
         include proxy_params;
         proxy_pass http://unix:/run/gunicorn.sock;
     }
-}"
-> /etc/nginx/sites-available/textutils
+}" > /etc/nginx/sites-available/first
 
 
-sudo ln -s /etc/nginx/sites-available/textutils /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/first /etc/nginx/sites-enabled/
 
 sudo rm /etc/nginx//sites-enabled/default
 
