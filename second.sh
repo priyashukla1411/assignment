@@ -25,7 +25,7 @@ ExecStart=/home/ubuntu/env/bin/gunicorn \
           --access-logfile - \
           --workers 3 \
           --bind unix:/run/gunicorn.sock \
-          textutils .wsgi:application
+          textutils.wsgi:application
 
 [Install]
 WantedBy=multi-user.target"  >  /etc/systemd/system/gunicorn.service
@@ -51,7 +51,7 @@ echo "server {
 }" > /etc/nginx/sites-available/first
 
 
-sudo ln -s /etc/nginx/sites-available/textutils  /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/first  /etc/nginx/sites-enabled/
 
 sudo rm /etc/nginx//sites-enabled/default
 
