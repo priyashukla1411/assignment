@@ -20,12 +20,12 @@ After=network.target
 [Service]
 User=ubuntu
 Group=www-data
-WorkingDirectory=/home/ubuntu/
-ExecStart=/home/ubuntu/env/bin/gunicorn \
+WorkingDirectory=/home/ubuntu/projectdir
+ExecStart=/home/ubuntu/projectdir/env/bin/gunicorn \
           --access-logfile - \
           --workers 3 \
           --bind unix:/run/gunicorn.sock \
-          first.wsgi:application
+          textutils .wsgi:application
 
 [Install]
 WantedBy=multi-user.target"  >  /etc/systemd/system/gunicorn.service
@@ -37,11 +37,11 @@ sudo systemctl enable gunicorn.socket
 
 echo "server {
     listen 80;
-    server_name 13.208.173.152;
+    server_name 13.114.79.245;
 
     location = /favicon.ico { access_log off; log_not_found off; }
     location /static/ {
-        root /home/ubuntu/;
+        root /home/ubuntu/projectdir;
     }
 
     location / {
@@ -51,7 +51,7 @@ echo "server {
 }" > /etc/nginx/sites-available/first
 
 
-sudo ln -s /etc/nginx/sites-available/first /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/textutils  /etc/nginx/sites-enabled/
 
 sudo rm /etc/nginx//sites-enabled/default
 
