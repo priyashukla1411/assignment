@@ -20,8 +20,8 @@ After=network.target
 [Service]
 User=ubuntu
 Group=www-data
-WorkingDirectory=/home/ubuntu/projectdir
-ExecStart=/home/ubuntu/projectdir/env/bin/gunicorn \
+WorkingDirectory=/home/ubuntu/projectdir/projectdir
+ExecStart=/home/ubuntu/projectdir/projectdir/env/bin/gunicorn \
           --access-logfile - \
           --workers 3 \
           --bind unix:/run/gunicorn.sock \
@@ -41,7 +41,7 @@ echo "server {
 
     location = /favicon.ico { access_log off; log_not_found off; }
     location /static/ {
-        root /home/ubuntu/projectdir;
+        root /home/ubuntu/projectdir/projectdir;
     }
 
     location / {
